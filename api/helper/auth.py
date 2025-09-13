@@ -8,7 +8,8 @@ import jwt
 def decodeJWT(token: str) -> dict:
     try:
         try:
-            decoded_token = jwt.decode(token, "HelloWorld", algorithms=["HS256"])
+            decoded_token = jwt.decode(
+                token, "HelloWorld", algorithms=["HS256"])
         except Exception:
             raise HTTPException(
                 status_code=403, detail="Invalid token or expired token."
@@ -28,13 +29,13 @@ class JWTBearer(HTTPBearer):
         super_user = None
         super(JWTBearer, self).__init__(auto_error=auto_error)
 
-    async def __call__(self, request: Request): # type: ignore
+    async def __call__(self, request: Request):  # type: ignore
         try:
             global auth_type
             auth_type = "Bearer"
             credentials: HTTPAuthorizationCredentials = await super(
                 JWTBearer, self
-            ).__call__(request) # type: ignore
+            ).__call__(request)  # type: ignore
             if credentials:
                 if not credentials.scheme == "Bearer":
                     raise HTTPException(
@@ -52,11 +53,12 @@ class JWTBearer(HTTPBearer):
                 )
         except Exception as e:
             print(e)
-        credentials = request.headers.get("x-auth-token")
+        credentials = request.headers.get("x-auth-token")  # type: ignore
         global jwt_token
-        
+
         if not credentials:
-            raise HTTPException(status_code=403, detail="Invalid authorization code.")
+            raise HTTPException(
+                status_code=403, detail="Invalid authorization code.")
         auth_type = "Basic"
         jwt_token = credentials
         request_args = dict(request.query_params)
@@ -83,10 +85,10 @@ class JWTBearer(HTTPBearer):
             isTokenValid = True
         return isTokenValid
 
-    def _get_token():
+    def _get_token(): # type: ignore
         print("Herer")
         if auth_type and jwt_token:
-            return auth_type + " " + jwt_token
+            return f"{auth_type} {jwt_token}"
 
-    def _super_user():
+    def _super_user(): # type: ignore
         return super_user

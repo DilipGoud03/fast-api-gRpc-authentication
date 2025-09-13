@@ -18,4 +18,4 @@ class ConnectionChannel():
         )
         channel = grpc.insecure_channel("localhost:50062")
         """Create a gRPC channel for contact service."""
-        return grpc.intercept_channel(channel, header_adder_interceptor)
+        return grpc.intercept_channel(channel, header_adder_interceptor) # type: ignore

@@ -1,14 +1,14 @@
 import grpc
 from google.protobuf.json_format import MessageToDict
 from fastapi import APIRouter, Depends, HTTPException
-import proto.users.users_pb2
-import proto.users.users_pb2_grpc
 from fastapi.responses import JSONResponse
 import typing as t
 from helper.connections import ConnectionChannel
 from helper.error_formating import ErrorFormating
 from helper.auth import JWTBearer
 from models.users import User, UserLogin, UserUpdate
+import proto.users.users_pb2
+import proto.users.users_pb2_grpc
 
 
 router = APIRouter(
@@ -72,7 +72,7 @@ def login_user(
             status_code=400, detail=ErrorFormating._remove_data((e.details())))
 
     response = MessageToDict(
-        response, preserving_proto_field_name=True, including_default_value_fields=True)
+        response, preserving_proto_field_name=True)
     if response["status"] == True:
         return response
     else:

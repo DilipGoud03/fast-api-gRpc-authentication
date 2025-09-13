@@ -2,7 +2,7 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-import proto.users.users_pb2 as users__pb2
+from proto.users import users_pb2 as users_dot_users__pb2
 
 
 class UserServiceStub(object):
@@ -16,33 +16,33 @@ class UserServiceStub(object):
         """
         self.GetUser = channel.unary_unary(
                 '/users.UserService/GetUser',
-                request_serializer=users__pb2.GetUserRequest.SerializeToString,
-                response_deserializer=users__pb2.GetUserResponse.FromString,
+                request_serializer=users_dot_users__pb2.GetUserRequest.SerializeToString,
+                response_deserializer=users_dot_users__pb2.GetUserResponse.FromString,
                 )
         self.CreateUser = channel.unary_unary(
                 '/users.UserService/CreateUser',
-                request_serializer=users__pb2.CreateUserRequest.SerializeToString,
-                response_deserializer=users__pb2.CreateUserResponse.FromString,
+                request_serializer=users_dot_users__pb2.CreateUserRequest.SerializeToString,
+                response_deserializer=users_dot_users__pb2.CreateUserResponse.FromString,
                 )
         self.UpdateUser = channel.unary_unary(
                 '/users.UserService/UpdateUser',
-                request_serializer=users__pb2.UpdateUserRequest.SerializeToString,
-                response_deserializer=users__pb2.UpdateUserResponse.FromString,
+                request_serializer=users_dot_users__pb2.UpdateUserRequest.SerializeToString,
+                response_deserializer=users_dot_users__pb2.UpdateUserResponse.FromString,
                 )
         self.DeleteUser = channel.unary_unary(
                 '/users.UserService/DeleteUser',
-                request_serializer=users__pb2.DeleteUserRequest.SerializeToString,
-                response_deserializer=users__pb2.DeleteUserResponse.FromString,
+                request_serializer=users_dot_users__pb2.DeleteUserRequest.SerializeToString,
+                response_deserializer=users_dot_users__pb2.DeleteUserResponse.FromString,
                 )
         self.ListUsers = channel.unary_unary(
                 '/users.UserService/ListUsers',
-                request_serializer=users__pb2.ListUsersRequest.SerializeToString,
-                response_deserializer=users__pb2.ListUsersResponse.FromString,
+                request_serializer=users_dot_users__pb2.ListUsersRequest.SerializeToString,
+                response_deserializer=users_dot_users__pb2.ListUsersResponse.FromString,
                 )
         self.LoginUser = channel.unary_unary(
                 '/users.UserService/LoginUser',
-                request_serializer=users__pb2.LoginUserRequest.SerializeToString,
-                response_deserializer=users__pb2.LoginUserResponse.FromString,
+                request_serializer=users_dot_users__pb2.LoginUserRequest.SerializeToString,
+                response_deserializer=users_dot_users__pb2.LoginUserResponse.FromString,
                 )
 
 
@@ -90,33 +90,33 @@ def add_UserServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetUser': grpc.unary_unary_rpc_method_handler(
                     servicer.GetUser,
-                    request_deserializer=users__pb2.GetUserRequest.FromString,
-                    response_serializer=users__pb2.GetUserResponse.SerializeToString,
+                    request_deserializer=users_dot_users__pb2.GetUserRequest.FromString,
+                    response_serializer=users_dot_users__pb2.GetUserResponse.SerializeToString,
             ),
             'CreateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.CreateUser,
-                    request_deserializer=users__pb2.CreateUserRequest.FromString,
-                    response_serializer=users__pb2.CreateUserResponse.SerializeToString,
+                    request_deserializer=users_dot_users__pb2.CreateUserRequest.FromString,
+                    response_serializer=users_dot_users__pb2.CreateUserResponse.SerializeToString,
             ),
             'UpdateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.UpdateUser,
-                    request_deserializer=users__pb2.UpdateUserRequest.FromString,
-                    response_serializer=users__pb2.UpdateUserResponse.SerializeToString,
+                    request_deserializer=users_dot_users__pb2.UpdateUserRequest.FromString,
+                    response_serializer=users_dot_users__pb2.UpdateUserResponse.SerializeToString,
             ),
             'DeleteUser': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteUser,
-                    request_deserializer=users__pb2.DeleteUserRequest.FromString,
-                    response_serializer=users__pb2.DeleteUserResponse.SerializeToString,
+                    request_deserializer=users_dot_users__pb2.DeleteUserRequest.FromString,
+                    response_serializer=users_dot_users__pb2.DeleteUserResponse.SerializeToString,
             ),
             'ListUsers': grpc.unary_unary_rpc_method_handler(
                     servicer.ListUsers,
-                    request_deserializer=users__pb2.ListUsersRequest.FromString,
-                    response_serializer=users__pb2.ListUsersResponse.SerializeToString,
+                    request_deserializer=users_dot_users__pb2.ListUsersRequest.FromString,
+                    response_serializer=users_dot_users__pb2.ListUsersResponse.SerializeToString,
             ),
             'LoginUser': grpc.unary_unary_rpc_method_handler(
                     servicer.LoginUser,
-                    request_deserializer=users__pb2.LoginUserRequest.FromString,
-                    response_serializer=users__pb2.LoginUserResponse.SerializeToString,
+                    request_deserializer=users_dot_users__pb2.LoginUserRequest.FromString,
+                    response_serializer=users_dot_users__pb2.LoginUserResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -140,8 +140,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/users.UserService/GetUser',
-            users__pb2.GetUserRequest.SerializeToString,
-            users__pb2.GetUserResponse.FromString,
+            users_dot_users__pb2.GetUserRequest.SerializeToString,
+            users_dot_users__pb2.GetUserResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -157,8 +157,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/users.UserService/CreateUser',
-            users__pb2.CreateUserRequest.SerializeToString,
-            users__pb2.CreateUserResponse.FromString,
+            users_dot_users__pb2.CreateUserRequest.SerializeToString,
+            users_dot_users__pb2.CreateUserResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -174,8 +174,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/users.UserService/UpdateUser',
-            users__pb2.UpdateUserRequest.SerializeToString,
-            users__pb2.UpdateUserResponse.FromString,
+            users_dot_users__pb2.UpdateUserRequest.SerializeToString,
+            users_dot_users__pb2.UpdateUserResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -191,8 +191,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/users.UserService/DeleteUser',
-            users__pb2.DeleteUserRequest.SerializeToString,
-            users__pb2.DeleteUserResponse.FromString,
+            users_dot_users__pb2.DeleteUserRequest.SerializeToString,
+            users_dot_users__pb2.DeleteUserResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -208,8 +208,8 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/users.UserService/ListUsers',
-            users__pb2.ListUsersRequest.SerializeToString,
-            users__pb2.ListUsersResponse.FromString,
+            users_dot_users__pb2.ListUsersRequest.SerializeToString,
+            users_dot_users__pb2.ListUsersResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -225,7 +225,7 @@ class UserService(object):
             timeout=None,
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/users.UserService/LoginUser',
-            users__pb2.LoginUserRequest.SerializeToString,
-            users__pb2.LoginUserResponse.FromString,
+            users_dot_users__pb2.LoginUserRequest.SerializeToString,
+            users_dot_users__pb2.LoginUserResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
