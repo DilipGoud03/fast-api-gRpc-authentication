@@ -1,14 +1,14 @@
 import grpc
 from google.protobuf.json_format import MessageToDict
 from fastapi import APIRouter, Depends, HTTPException
+import proto.users.users_pb2
+import proto.users.users_pb2_grpc
 from fastapi.responses import JSONResponse
 import typing as t
 from helper.connections import ConnectionChannel
 from helper.error_formating import ErrorFormating
 from helper.auth import JWTBearer
 from models.users import User, UserLogin, UserUpdate
-import proto.users.users_pb2
-import proto.users.users_pb2_grpc
 
 
 router = APIRouter(
@@ -31,7 +31,7 @@ def create_user(
         )
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=400, detail=ErrorFormating._remove_data(e.details()))
+            status_code=400, detail=ErrorFormating()._remove_data(e.details()))
 
     response = MessageToDict(response, preserving_proto_field_name=True)
     return response
@@ -49,7 +49,7 @@ def get_user(
         response = client.GetUser(proto.users.users_pb2.GetUserRequest(id=id))
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=404, detail=ErrorFormating._remove_data(e.details()))
+            status_code=404, detail=ErrorFormating()._remove_data(e.details()))
 
     response = MessageToDict(response, preserving_proto_field_name=True)
     return response['user']
@@ -69,7 +69,7 @@ def login_user(
         )
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=400, detail=ErrorFormating._remove_data((e.details())))
+            status_code=400, detail=ErrorFormating()._remove_data(e.details()))
 
     response = MessageToDict(
         response, preserving_proto_field_name=True)
@@ -98,7 +98,7 @@ def update_user(
 
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=400, detail=ErrorFormating._remove_data(e.details()))
+            status_code=400, detail=ErrorFormating()._remove_data(e.details()))
 
     response = MessageToDict(response, preserving_proto_field_name=True)
     return response['user']

@@ -11,7 +11,7 @@ toml==0.10.2
 wsproto==1.2.0
 grpcio==1.60.0
 grpcio-tools==1.60.0
-fastapi==0.105.0
+fastapi[standard]==0.105.0
 sqlalchemy==1.4.50
 mysql-connector-python==8.2.0
 python-dotenv==1.0.0
