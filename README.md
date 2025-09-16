@@ -36,7 +36,7 @@ A **lightweight, high-performance authentication system** built with **FastAPI**
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/fastapi-grpc-auth.git
+git clone https://github.com/DilipGoud03/fast-api-gRpc-authentication.git
 cd fastapi-grpc-auth
 
 
