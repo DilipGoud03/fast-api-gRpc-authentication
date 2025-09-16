@@ -1,50 +1,65 @@
-FastAPI + gRPC Authentication Service
-A lightweight authentication system built with FastAPI and gRPC, designed for high-performance APIs and microservices.
+# 🚀 FastAPI + gRPC Authentication Service
 
-**🔑 Features**
-User registration & login
-JWT-based authentication (access & refresh tokens)
-Secure password hashing (bcrypt/argon2)
-gRPC communication between services
-FastAPI REST endpoints for external clients
-Role-based access control (optional)
+![Python](https://img.shields.io/badge/python-3.9%2B-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-🔥-green)
+![gRPC](https://img.shields.io/badge/gRPC-Enabled-orange)
+![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
-**🛠 Tech Stack**
-FastAPI – REST API framework
-gRPC – High-performance RPC framework
-Protocol Buffers (Protobuf) – Service definitions
-SQLite / PostgreSQL / MySQL – Database (choose your backend) Default is MYSQL
-JWT – Token-based authentication
+A **lightweight, high-performance authentication system** built with **FastAPI** and **gRPC**, designed for modern APIs and microservices.
 
+---
 
-**📦 Installation**
+## 🔑 Features
+
+- ✅ User **registration & login**
+- 🔒 **JWT-based authentication** (access & refresh tokens)
+- 🛡️ Secure **password hashing** (bcrypt / argon2)
+- 🔗 **gRPC communication** between internal services
+- 🌐 **FastAPI REST endpoints** for external clients
+- 🧑‍🤝‍🧑 Optional **role-based access control (RBAC)**
+
+---
+
+## 🛠 Tech Stack
+
+- ⚡ [FastAPI](https://fastapi.tiangolo.com/) – REST API framework  
+- 🔥 [gRPC](https://grpc.io/) – High-performance RPC framework  
+- 📦 [Protocol Buffers](https://protobuf.dev/) – Service definitions  
+- 🗄️ Database: **MySQL (default)** | PostgreSQL | SQLite  
+- 🔑 [JWT](https://jwt.io/) – Token-based authentication  
+- 🔐 [bcrypt](https://pypi.org/project/bcrypt/) / [argon2](https://pypi.org/project/argon2-cffi/) – Password hashing  
+
+---
+
+## 📦 Installation
+
 Clone the repository:
 
-  git clone https://github.com/your-username/fastapi-grpc-auth.git
-  cd fastapi-grpc-auth
+```bash
+git clone https://github.com/your-username/fastapi-grpc-auth.git
+cd fastapi-grpc-auth
 
 
-**Create a virtual environment & install dependencies:**
-
+# Create virtual environment
 python -m venv myVenv
 
-source venv/bin/activate   # Linux/Mac
+# Activate (Linux/Mac)
+source myVenv/bin/activate
 
-venv\Scripts\activate      # Windows
+# Activate (Windows)
+myVenv\Scripts\activate
 
+# Install dependencies
 pip install -r requirements.txt
 
 
-**⚡ Running the Services**
-
-**Start FastAPI server:**
+▶️ Start FastAPI server
 uvicorn app.main:app --reload
 
-**or **
+or
 
 fastapi dev app/main.py
 
 
-**Start gRPC server:**
-
-python uer-api-service/server.py
+▶️ Start gRPC server
+python user-api-service/server.py
