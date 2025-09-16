@@ -19,24 +19,32 @@ JWT – Token-based authentication
 
 **📦 Installation**
 Clone the repository:
-git clone https://github.com/your-username/fastapi-grpc-auth.git
-cd fastapi-grpc-auth
+
+  git clone https://github.com/your-username/fastapi-grpc-auth.git
+  cd fastapi-grpc-auth
 
 
 **Create a virtual environment & install dependencies:**
+
 python -m venv myVenv
+
 source venv/bin/activate   # Linux/Mac
+
 venv\Scripts\activate      # Windows
 
 pip install -r requirements.txt
 
 
-**⚡ Running the Service**
+**⚡ Running the Services**
 
 **Start FastAPI server:**
 uvicorn app.main:app --reload
+
 **or **
+
 fastapi dev app/main.py
 
+
 **Start gRPC server:**
+
 python uer-api-service/server.py
