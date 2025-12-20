@@ -29,6 +29,5 @@ async def serve():
     server.wait_for_termination()
 
 if __name__ == "__main__":
-    # setup()
     print("gRPC user server started")
     asyncio.run(serve())

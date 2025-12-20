@@ -25,13 +25,13 @@ def create_user(
 ) -> JSONResponse:
     client = proto.users.users_pb2_grpc.UserServiceStub(channel)
     try:
-        user = user.model_dump()
+        user = user.model_dump() if hasattr(user, "model_dump") else user.dict()
         response = client.CreateUser(
             proto.users.users_pb2.CreateUserRequest(user=user)
         )
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=400, detail=ErrorFormating()._remove_data(e.details()))
+            status_code=400, detail=ErrorFormating._remove_data(e.details()))
 
     response = MessageToDict(response, preserving_proto_field_name=True)
     return response
@@ -49,7 +49,7 @@ def get_user(
         response = client.GetUser(proto.users.users_pb2.GetUserRequest(id=id))
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=404, detail=ErrorFormating()._remove_data(e.details()))
+            status_code=404, detail=ErrorFormating._remove_data(e.details()))
 
     response = MessageToDict(response, preserving_proto_field_name=True)
     return response['user']
@@ -69,7 +69,7 @@ def login_user(
         )
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=400, detail=ErrorFormating()._remove_data(e.details()))
+            status_code=400, detail=ErrorFormating._remove_data(e.details()))
 
     response = MessageToDict(
         response, preserving_proto_field_name=True)
@@ -98,7 +98,7 @@ def update_user(
 
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=400, detail=ErrorFormating()._remove_data(e.details()))
+            status_code=400, detail=ErrorFormating._remove_data(e.details()))
 
     response = MessageToDict(response, preserving_proto_field_name=True)
     return response['user']

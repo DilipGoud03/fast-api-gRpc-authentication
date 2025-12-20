@@ -11,7 +11,7 @@ SQLALCHEMY_DATABASE_URL = "{}://{}:{}@{}:{}/{}".format(
     config("DB_PASSWORD", default="root"),
     config("DB_HOST", default="localhost"),
     config("DB_PORT", default="3306"),
-    config("DB_DATABASE", default="python_with_angular"),
+    config("DB_DATABASE", default="python"),
 )
 
 engine = create_engine(
