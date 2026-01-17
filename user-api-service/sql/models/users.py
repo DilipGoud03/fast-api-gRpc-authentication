@@ -1,7 +1,5 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime, func
 from database import Base
-from datetime import datetime
-
 
 class User(Base):
     __tablename__ = "users"
@@ -10,5 +8,15 @@ class User(Base):
     name = Column(String(255), nullable=False)
     email = Column(String(255), unique=True, index=True, nullable=False)
     password = Column(String(255), nullable=False)
-    created_at = Column(String(255), default=datetime.now(), nullable=False)
-    updated_at = Column(String(255), nullable=False, onupdate=datetime.now())
+    created_at = Column(
+        DateTime,
+        server_default=func.now(),
+        nullable=False
+    )
+    updated_at = Column(
+        DateTime,
+        server_default=func.now(),
+        onupdate=func.now(),
+        nullable=False
+    )
+    deleted_at = Column(DateTime, nullable=True, default=None)

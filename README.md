@@ -41,13 +41,13 @@ cd fastapi-grpc-auth
 
 
 # Create virtual environment
-python -m venv myVenv
+python -m venv fast-api-gRpc-authentication-venv
 
 # Activate (Linux/Mac)
-source myVenv/bin/activate
+source fast-api-gRpc-authentication-venv/bin/activate
 
 # Activate (Windows)
-myVenv\Scripts\activate
+fast-api-gRpc-authentication-venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt

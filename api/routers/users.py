@@ -40,7 +40,7 @@ def create_user(
 @router.get("/{id}", status_code=200)
 def get_user(
     id: int,
-    d: t.Any = Depends(JWTBearer()),
+    # d: t.Any = Depends(JWTBearer()),
     channel: t.Any = Depends(ConnectionChannel().user_channel)
 ) -> JSONResponse:
     client = proto.users.users_pb2_grpc.UserServiceStub(channel)
@@ -48,8 +48,9 @@ def get_user(
 
         response = client.GetUser(proto.users.users_pb2.GetUserRequest(id=id))
     except grpc.RpcError as e:
+        print(e)
         raise HTTPException(
-            status_code=404, detail=ErrorFormating._remove_data(e.details()))
+            status_code=ErrorFormating.status_code(e.code()), detail=ErrorFormating._remove_data(e.details()))
 
     response = MessageToDict(response, preserving_proto_field_name=True)
     return response['user']

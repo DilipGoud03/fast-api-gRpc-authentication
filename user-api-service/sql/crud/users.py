@@ -12,17 +12,15 @@ def get_user_by_email(db: Session, email: str) -> User:
 
 
 def create_user(db: Session, user) -> User:
-    user = User(
+    _user = User(
         name=user.get("name"),
         email=user.get("email"),
-        password=_encoded_password(user.get("password")),
-        created_at=user.get("created_at"),
-        updated_at=user.get("updated_at")
+        password=_encoded_password(user.get("password"))
     )
-    db.add(user)
+    db.add(_user)
     db.commit()
-    db.refresh(user)
-    return user
+    db.refresh(_user)
+    return _user
 
 
 def update_user(db: Session, existing_user: User,  user_data: dict) -> User:
