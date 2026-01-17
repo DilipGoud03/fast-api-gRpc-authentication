@@ -31,7 +31,7 @@ def create_user(
         )
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=400, detail=ErrorFormating._remove_data(e.details()))
+            status_code=ErrorFormating.status_code(e.code()), detail=ErrorFormating._remove_data(e.details()))
 
     response = MessageToDict(response, preserving_proto_field_name=True)
     return response
@@ -40,7 +40,7 @@ def create_user(
 @router.get("/{id}", status_code=200)
 def get_user(
     id: int,
-    # d: t.Any = Depends(JWTBearer()),
+    d: t.Any = Depends(JWTBearer()),
     channel: t.Any = Depends(ConnectionChannel().user_channel)
 ) -> JSONResponse:
     client = proto.users.users_pb2_grpc.UserServiceStub(channel)
@@ -70,7 +70,7 @@ def login_user(
         )
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=400, detail=ErrorFormating._remove_data(e.details()))
+            status_code=ErrorFormating.status_code(e.code()), detail=ErrorFormating._remove_data(e.details()))
 
     response = MessageToDict(
         response, preserving_proto_field_name=True)
@@ -78,7 +78,7 @@ def login_user(
         return response
     else:
         raise HTTPException(
-            status_code=400, detail="Bad credentials")
+            status_code=ErrorFormating.status_code(e.code()), detail="Bad credentials")
 
 
 @router.put("/{id}", status_code=200)
@@ -99,7 +99,7 @@ def update_user(
 
     except grpc.RpcError as e:
         raise HTTPException(
-            status_code=400, detail=ErrorFormating._remove_data(e.details()))
+            status_code=ErrorFormating.status_code(e.code()), detail=ErrorFormating._remove_data(e.details()))
 
     response = MessageToDict(response, preserving_proto_field_name=True)
     return response['user']
