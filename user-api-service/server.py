@@ -9,7 +9,7 @@ import services.users
 import asyncio
 
 
-async def serve():
+def serve():
     header_validator = RequestHeaderValidatorInterceptor(
         grpc.StatusCode.UNAUTHENTICATED,
         "Access denied!!!",
@@ -22,12 +22,13 @@ async def serve():
     proto.users.users_pb2_grpc.add_UserServiceServicer_to_server(
         services.users.UserService(), server
     )
+    listen_addr = "[::]:" + port
     server.add_insecure_port("[::]:" + port)
-    logging.info("Starting server on %s", "[::]:" + port)
-
+    logging.info("Starting server on %s", listen_addr)
     server.start()
     server.wait_for_termination()
 
+
 if __name__ == "__main__":
-    print("gRPC user server started")
+    logging.basicConfig(level=logging.INFO)
     asyncio.run(serve())
