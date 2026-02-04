@@ -1,0 +1,10 @@
+{
+    "question": "how many of the posts were about the data breach?",
+    "sql": "SELECT COUNT(*) AS post_count FROM post WHERE metadata::text ILIKE '%data breach%'",
+    "result": [
+        {
+            "post_count": 0
+        }
+    ],
+    "generated_at": "2026-02-03T08:18:41-05:00"
+}
