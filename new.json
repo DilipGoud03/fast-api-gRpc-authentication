@@ -1,10 +1,35 @@
 {
-    "question": "how many of the posts were about the data breach?",
-    "sql": "SELECT COUNT(*) AS post_count FROM post WHERE metadata::text ILIKE '%data breach%'",
-    "result": [
-        {
-            "post_count": 0
+    "generated_at": "2026-02-04T05:25:48-05:00",
+    "metrics": {
+        "posts": {
+            "question": "How many of the posts do we have?",
+            "sql": "SELECT COUNT(*) AS total_posts FROM post;",
+            "result": {
+                "total_posts": 5234838
+            }
+        },
+        "profiles": {
+            "total_profiles": {
+                "question": "How many of the profiles do we have?",
+                "sql": "SELECT COUNT(*) AS profile_count FROM profile;",
+                "result": {
+                    "profile_count": 2532823
+                }
+            },
+            "linkedin_profiles": {
+                "question": "How many of the profiles whose network is LINKEDIN?",
+                "sql": "SELECT COUNT(*) AS linkedin_profile_count FROM profile WHERE network = 'LINKEDIN';",
+                "result": {
+                    "linkedin_profile_count": 2435533
+                }
+            },
+            "empty_name_and_url_profiles": {
+                "question": "How many of the profiles whose name and url is empty?",
+                "sql": "SELECT COUNT(*) AS empty_name_url_profiles_count FROM profile WHERE (name IS NULL OR name = '') AND (url IS NULL OR url = '');",
+                "result": {
+                    "empty_name_url_profiles_count": 1638960
+                }
+            }
         }
-    ],
-    "generated_at": "2026-02-03T08:18:41-05:00"
+    }
 }
